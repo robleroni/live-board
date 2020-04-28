@@ -1,0 +1,36 @@
+image: node:13
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - install
+  - test
+  - deploy
+
+install:
+  stage: install
+  tags:
+    - docker
+  script:
+    - npm install
+
+test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - npm run test:coverage
+
+deploy:
+  stage: deploy
+  image: ebits/openshift-client
+  tags:
+    - docker
+  script: |
+    oc login $OPENSHIFT_URL --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
+    oc project $OPENSHIFT_PROJECT
+    oc get services $CI_PROJECT_NAME 2> /dev/null || oc new-app . --name=$CI_PROJECT_NAME
+    oc start-build $CI_PROJECT_NAME --from-dir=. --follow
+    oc get routes $CI_PROJECT_NAME 2> /dev/null || oc expose service $CI_PROJECT_NAME

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real-Time Board</title>
+    <link rel="stylesheet" href="./packages/example/public/style.css" />
+    <script type="module">
+      import client from './packages/example/src/client.js';
+    </script>
+  </head>
+  <header>
+    <nav id="nav">
+      <button>Add Column</button>
+    </nav>
+    <section id="users">
+      <ul id="userList"></ul>
+    </section>
+  </header>
+  <main>
+    <section id="board"></section>
+  </main>
+  <aside>
+    <section id="log">
+      <input id="log-toggle" type="checkbox" checked/>
+      <label for="log-toggle">
+        <img src="./packages/example/public/history.png" />
+      </label>
+      <div id="log-content"></div>
+    </section>
+  </aside>
+  <div id="error" class="errors" style="display: none"></div>
+</html>

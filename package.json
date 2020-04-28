@@ -1,0 +1,29 @@
+{
+  "name": "real-time-board",
+  "version": "1.0.0",
+  "description": "A kanban board with real-time features",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "client": "reload -b -s packages/example/public/index.html -w packages",
+    "server": "nodemon packages/example/src/server.js",
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "stresstest": "node packages/stresstest/stresstest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:robleroni/live-board.git"
+  },
+  "author": "Robin Christen & Etienne Gobeli",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@types/jest": "^25.1.1",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "reload": "^3.0.4"
+  },
+  "dependencies": {}
+}
